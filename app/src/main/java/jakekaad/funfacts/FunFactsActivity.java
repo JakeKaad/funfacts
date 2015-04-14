@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 
 public class FunFactsActivity extends ActionBarActivity {
 
@@ -17,12 +19,19 @@ public class FunFactsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_fun_facts);
 
         // Declare our view variables and assign them the Views from the layout file
-        TextView factLabel = (TextView) findViewById(R.id.factTextView);
+        final TextView factLabel = (TextView) findViewById(R.id.factTextView);
         Button showFactButton = (Button) findViewById(R.id.showFactButton);
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //The button was clicked, so update the fact lavel with a new fact
+                String fact = "";
+                // Randomly select a fact
+                Random randomGenerator = new Random();  // Contstruct a new Random number generator
+                int randomNumber = randomGenerator.nextInt(3);
+                fact = randomNumber + "";
+                // Update the label with our dynamic fact
+                factLabel.setText(fact);
             }
         };
         showFactButton.setOnClickListener(listener);
